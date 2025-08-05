@@ -1,0 +1,144 @@
+.pantalla-juego {
+  display: flex;
+  height: 100vh;
+}
+
+.panel-izquierdo {
+  width: 300px;
+  background-color: #222;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.panel-derecho {
+  flex: 1;
+  position: marker;
+}
+
+.boton-pausa,
+.buton-reglas {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  z-index: 500;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  display: inline-block;
+  width: auto;
+}
+
+.boton-pausa:hover,
+.buton-reglas:hover {
+  background-color: #666;
+  transform: scale(1.05);
+}
+
+.boton-pausa:active,
+.buton-reglas:active {
+  transform: scale(0.98);
+}
+
+
+
+
+.boton-pausa {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.boton-reglas {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.boton-finalizar {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+
+
+.btn-mute {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.btn-mute img {
+  filter: drop-shadow(0 0 5px black);
+}
+
+
+.btn-pause {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.iconos {
+  width: 32px;
+  height: 32px;
+}
+
+.contenedor-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.botones-arriba {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.botones-arriba:hover {
+  transform: scale(1.2);
+}

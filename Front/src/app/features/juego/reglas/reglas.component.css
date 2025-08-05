@@ -1,0 +1,113 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.background img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed; /* En vez de absolute */
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+.modal {
+  background-color: #ffdd44;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 74vw;/*ancho*/
+  height: 76vh;/*alto*/
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+.titulo {
+  font-family: Georgia, serif;
+  font-size: 45px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.reglas {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.reglas p {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.linea {
+  font-family: Georgia, serif;
+  flex-grow: 1;
+  border-bottom: 2px dashed black;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 14px;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.btn {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  padding: 12px 28px;
+  border: 2px solid black;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: #fff9c4;
+}
+
+.boton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+
+  font-family: Georgia, serif;
+  font-size: 22px;
+  padding: 12px 28px;
+  border: 2px solid black;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: #fff9c4;
+}
+
+.btn:hover {
+  background-color: #ffee88;
+}

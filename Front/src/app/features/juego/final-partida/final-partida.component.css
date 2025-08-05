@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.background img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  background-color: #ffdd44;
+  padding: 40px;
+  width: 70vw;
+  height: 68vh;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 30px black;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal h1 {
+  font-size: 90px;
+  font-family: 'EB Garamond', serif;
+  font-weight: 300;
+  margin-top: 0;
+  color: #1a1a1a;
+}
+
+.modal h2 {
+  font-size: 50px;
+  margin: 10px 0;
+}
+
+.modal p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.modal button {
+  font-family: 'EB Garamond', serif;
+  display: block;
+  width: 35%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 43px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: #fff9c4;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #bfa961;
+}

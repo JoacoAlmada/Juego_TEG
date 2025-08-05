@@ -1,0 +1,43 @@
+<div class="container">
+
+  <button class="close-session" (click)="closeSession()">Cerrar Sesión</button>
+
+
+  <div class="main-title">
+    <h1>T.E.G.</h1>
+  </div>
+
+
+  <div class="main-content">
+
+    <div class="info-bloque">
+      <div class="user-info">
+        <h2>{{ userName || 'USUARIO' }}</h2>
+        <div class="user-level">Nivel {{ userLevel }}</div>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="userProgress"></div>
+        </div>
+        <div class="progress-label">{{ userProgress }}%</div>
+      </div>
+
+      <div class="menu-options">
+        <div class="menu-item" (click)="startNewGame()">Iniciar Partida</div>
+        <div class="menu-item" (click)="resumeGame()">Reanudar Partida</div>
+      </div>
+
+      <div class="utn-logo">
+        <div class="logo-box">
+          <img src="assets/img/logoUTN.jpg" alt="foto god" class="logo-image">
+        </div>
+        <div class="universidas">UTN-Córdoba</div>
+      </div>
+    </div>
+
+
+    <div class="world-map">
+      <div class="mapa-teg">
+        <img src="assets/img/mapa.png" class="world-map-image" alt="mapa" />
+      </div>
+    </div>
+  </div>
+</div>

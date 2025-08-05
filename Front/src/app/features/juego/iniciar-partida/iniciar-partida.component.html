@@ -1,0 +1,64 @@
+<div class="pantalla-iniciar">
+  <h1 class="titulo">T. E. G.</h1>
+  <h2 class="subtitulo">Configurar Partida</h2>
+
+
+  <label for="cantidad">Seleccionar cantidad de jugadores:</label>
+  <select id="cantidad" [(ngModel)]="cantidadJugadores" name="cantidad" (change)="actualizarJugadores()">
+    <option *ngFor="let n of [3,4,5,6]" [value]="n">{{ n }}</option>
+  </select>
+
+  <form class="formulario" (ngSubmit)="iniciarPartida()">
+    <div class="jugadores-grid">
+      <div *ngFor="let jugador of jugadores; let i = index"
+           class="jugador-config"
+           [ngStyle]="{'background-color': obtenerColorFondo(jugador.color)}"
+           [ngClass]="{'texto-oscuro': esColorClaro(jugador.color)}">
+      <label>Jugador {{ i + 1 }}:</label>
+
+        <select [(ngModel)]="jugador.tipo" name="tipo-{{i}}" (change)="onTipoChange(jugador)" [disabled]="i === 0">
+          <option [ngValue]="TipoJugador.HUMANO">Humano</option>
+          <option [ngValue]="TipoJugador.BOT">Bot</option>
+        </select>
+
+        <ng-container *ngIf="jugador.tipo === TipoJugador.BOT">
+          <select [(ngModel)]="jugador.dificultad" name="dificultad-{{i}}">
+            <option [ngValue]="DificultadBot.NOVATO">Novato</option>
+            <option [ngValue]="DificultadBot.INTERMEDIO">Intermedio</option>
+            <option [ngValue]="DificultadBot.EXPERTO">Experto</option>
+          </select>
+        </ng-container>
+
+        <ng-container *ngIf="jugador.tipo === TipoJugador.HUMANO">
+          <input
+            type="text"
+            [(ngModel)]="jugador.nombre"
+            name="nombre-{{i}}"
+            placeholder="Nombre del jugador"
+            [readonly]="i === 0"
+          />
+        </ng-container>
+
+        <div class="color-selector">
+          <select [(ngModel)]="jugador.color" name="color-{{i}}" (change)="onColorChange(i)">
+            <option *ngFor="let color of coloresDisponibles"
+                    [value]="color"
+                    [disabled]="esColorOcupado(color, i)">
+              {{ color }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <p *ngIf="!esFormularioValido()" style="color: red;">
+      ⚠️ Todos los jugadores humanos deben tener nombre.
+    </p>
+
+    <button type="submit" class="btn-iniciar" [disabled]="!esFormularioValido()">
+      Iniciar
+    </button>
+  </form>
+
+  <button class="btn-volver" (click)="volverInicio()">Volver Atrás</button>
+</div>

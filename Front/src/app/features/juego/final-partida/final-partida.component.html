@@ -1,0 +1,18 @@
+<div class="modal-overlay" *ngIf="objetivoGanador && colorGanador">
+  <div class="modal">
+    <h1>FIN DE LA PARTIDA</h1>
+    <h2>
+      GANADOR:
+      <span [ngStyle]="{ color: colorGanador.toLowerCase() }">
+        {{ nombreGanador }}
+      </span>
+    </h2>
+
+    <p>
+      Objetivo cumplido:
+      <span class="objetivo">{{ objetivoGanador.descripcion }}</span>
+    </p>
+
+    <button (click)="volverAlMenu()">Volver al menú</button>
+  </div>
+</div>

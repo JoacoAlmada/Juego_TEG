@@ -1,0 +1,158 @@
+<div class="control-panel">
+  <div class="panel-header">
+    <h2>FASE</h2>
+    <h2>ATAQUE</h2>
+  </div>
+
+  <div class="player-info">
+    <div class="player-turn" [ngClass]="colorJugador">
+      <span class="value">{{ turnoJugador }}</span>
+    </div>
+  </div>
+
+  <div class="mission-section">
+    <button
+      class="btn btn-mission"
+      [class.active]="mostrarObjetivo"
+      (click)="alternarObjetivo()">
+      {{ mostrarObjetivo ? 'Ocultar Objetivo' : 'Mostrar Objetivo' }}
+    </button>
+    <div class="btn-indicator mission-indicator" [class.active]="mostrarObjetivo">
+      Misión
+    </div>
+  </div>
+
+
+  <div class="cards-section">
+    <button class="btn btn-cards" (click)="abrirDialogoCartas()">Mostrar cartas</button>
+    <dialog #dialogoCartas class="cartas-modal">
+      <h2>CARTAS</h2>
+      <div class="cards-container">
+        <div *ngFor="let carta of cartas" class="card">
+          <img [ngSrc]="carta.img" [alt]="carta.titulo" width="100" height="140">
+          <span>{{ carta.titulo }}</span>
+        </div>
+        <button class="btn-volver" (click)="cerrarDialogo()">Volver</button>
+      </div>
+    </dialog>
+  </div>
+
+  <div class="selector-section">
+    <label for="neighbor-select">País</label>
+    <select
+      id="player-countries"
+      [(ngModel)]="paisSeleccionado"
+      class="form-select">
+      <option *ngFor="let pais of paisesJugador" [ngValue]="pais">{{ pais.nombre }}</option>
+    </select>
+  </div>
+
+  <div class="selector-section">
+    <label for="neighbor-select">País a Atacar</label>
+    <select
+      id="player-neighbor"
+      [(ngModel)]="vecinoSeleccionado"
+      class="form-select">
+      <option *ngFor="let pais of paisesVecinos" [ngValue]="pais">{{ pais.nombre }}</option>
+    </select>
+  </div>
+
+  <div class="action-section">
+    <button
+      class="btn btn-place"
+      (click)="atacar()"
+      [disabled]="!paisSeleccionado || !vecinoSeleccionado || ejercitosDisponibles < 1 || ejercitosDisponibles <= ejercitosDefensores">
+
+      Atacar
+    </button>
+  </div>
+
+  <div class="game-info">
+    <div class="info-item">
+    </div>
+    <div class="info-item" *ngIf="paisSeleccionado">
+      <span class="label">País seleccionado:</span>
+      <span class="value">{{ paisSeleccionado?.nombre }}</span>
+    </div>
+    <div class="info-item" *ngIf="vecinoSeleccionado">
+      <span class="label">Vecino seleccionado:</span>
+      <span class="value">{{ vecinoSeleccionado?.nombre }}</span>
+    </div>
+  </div>
+
+  <div class="mission-panel" *ngIf="mostrarObjetivo && objetivoActual">
+    <h3>Objetivo</h3>
+    <div class="mission-item">
+      <p>{{ objetivoActual.descripcion }}</p>
+    </div>
+  </div>
+
+  <div class="cards-panel" *ngIf="mostrarCartas">
+    <h3>Cartas</h3>
+    <div class="cards-grid">
+      <div class="card-item" *ngFor="let i of [1,2,3,4,5,6]">
+        <div class="card-placeholder">Carta {{ i }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-section action-section-bottom">
+    <button
+      class="btn btn-place"
+      (click)="avanzarFase()">
+      Avanzar
+    </button>
+  </div>
+  <div *ngIf="isEjecutandoBot" class="bot-overlay">
+    <div class="mensaje">Turno del bot. Espere...</div>
+  </div>
+</div>
+
+
+
+<div class="modal-overlay" *ngIf="mostrarResultado">
+  <div class="modal">
+    <h2>Resultado del Ataque</h2>
+
+    <div class="dados">
+      <h3>Dados de Ataque:</h3>
+      <div class="dado" *ngFor="let dado of resultadoAtaque.dadosAtaque">
+        {{ dado }}
+      </div>
+
+      <h3>Dados de Defensa:</h3>
+      <div class="dado" *ngFor="let dado of resultadoAtaque.dadosDefensa">
+        {{ dado }}
+      </div>
+    </div>
+
+    <p class="resultado-final">Resultado : {{ resultadoAtaque.resultado }}</p>
+
+    <div class="selector-section-conquista" *ngIf="resultadoAtaque.resultado === 'conquista'">
+    <label for="army-quantity">Cantidad de ejército</label>
+      <select
+        id="army-quantity"
+        [(ngModel)]="tropas"
+        class="form-select">
+        <option *ngFor="let cantidad of opcionesEjercitos" [value]="cantidad">
+          {{ cantidad }}
+        </option>
+      </select>
+
+      <button (click)="mover()" class="modal-button">MOVER TROPAS</button>
+
+    </div>
+
+    <div class="botones-container" *ngIf="resultadoAtaque.resultado === 'ataque'">
+
+      <button (click)="atacar()"
+              [disabled]="!paisSeleccionado || !vecinoSeleccionado || ejercitosDisponibles < 1 || ejercitosDisponibles <= ejercitosDefensores"
+              class="modal-button">ATACAR</button>
+      <button (click)="cerrarModal()" class="modal-button">RETIRARSE</button>
+    </div>
+
+  </div>
+
+
+
+</div>

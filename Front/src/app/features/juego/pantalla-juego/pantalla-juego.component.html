@@ -1,0 +1,30 @@
+<div class="pantalla-juego">
+  <div class="panel-izquierdo">
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="panel-derecho">
+    <app-mapa [jugadores]="jugadores" (paisSeleccionado)="onPaisMapaSeleccionado($event)"></app-mapa>
+  </div>
+
+  <div class="contenedor-botones">
+    <button class="botones-arriba" (click)="pausarJuego()">
+      <img src="assets/icons/pausa.png" alt="Pausa" class="iconos">
+    </button>
+
+    <button class="botones-arriba" (click)="verReglas()">
+      <img src="assets/icons/reglas.png" alt="Reglas" class="iconos">
+    </button>
+
+    <button (click)="pausarMusica()" class="botones-arriba">
+      <img [src]="estaMuteado ? 'assets/icons/no-sound.png' : 'assets/icons/volume-up.png'" alt="Mute toggle" class="iconos">
+    </button>
+  </div>
+  <app-final-partida *ngIf="finalizado" (cerrarFinalizado)="finalizado = false"></app-final-partida>
+</div>
+<app-pausa *ngIf="pausado" (cerrarPausa)="reanudarJuego()" (abrirReglas)="abrirReglasDesdePausa()"></app-pausa>
+<app-reglas *ngIf="reglas" (cerrarReglas)="volverReglas()"></app-reglas>
+
+
+<audio #audioFondo src="assets/audio/musica%20epica.mp3" loop></audio>
+
